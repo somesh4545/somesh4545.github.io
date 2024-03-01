@@ -44,9 +44,12 @@
   </style>
 </head>
 <body>
+  <p id="loading">Connecting...</p>
 <div class="output"></div>
 
 <script>
+
+const loading_text = document.getElementById("loading")
   
 function runPythonCode(code) {
   // Function to run Python code
@@ -176,8 +179,11 @@ function builtinRead(x) {
 }
 
 
-
   
+window.onload = function(e){ 
+  loading_text.style.display = 'none'
+  runPythonCode(`print("hellor owrl")`)
+}
 
 </script>
 
