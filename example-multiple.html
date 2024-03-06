@@ -153,7 +153,7 @@ function runit(code, outputElem) {
     },
     read: builtinRead,
     __future__: Sk.python3,
-    execLimit: 2000,
+    execLimit: Number.POSITIVE_INFINITY,
   });
   var myPromise = Sk.misceval.asyncToPromise(function () {
     return Sk.importMainWithBody("<stdin>", false, prog, true);
