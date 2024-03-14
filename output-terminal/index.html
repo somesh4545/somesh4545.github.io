@@ -44,19 +44,15 @@
   </style>
 </head>
 <body>
+
 <div class="output"></div>
 
 <script>
-function runPythonCode(code) {
-  // Function to run Python code
-  runit(code, $(".output"));
-}
 const Range = ace.require("ace/range").Range;
 $(document).ready(function() {
   $(".output").each(function (index) {
     const output = ace.edit(this);
     output.session.setMode("ace/mode/python");
-    console.log(output.session)
     output.renderer.setShowGutter(false);
     output.setReadOnly(true);
     $(this).data("aceObject", output);
@@ -109,9 +105,11 @@ $(document).ready(function() {
   );
   
 })
-function runit(code, outputElem) {
-  const output = $(outputElem).data("aceObject");
-  const prog = code;
+function runit(code) {
+  const outputElem = $(".output");
+  const output = $($(".output")).data("aceObject");
+  const prog = atob(code);
+
   output.session.setValue("");
   Sk.pre = "output";
     Sk.configure({
