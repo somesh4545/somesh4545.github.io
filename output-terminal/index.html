@@ -51,7 +51,9 @@
 const Range = ace.require("ace/range").Range;
 $(document).ready(function() {
   $(".output").each(function (index) {
-    const output = ace.edit(this);
+    const output = ace.edit(this, {
+      wrap: true,
+    });
     output.session.setMode("ace/mode/python");
     output.renderer.setShowGutter(false);
     output.setReadOnly(true);
