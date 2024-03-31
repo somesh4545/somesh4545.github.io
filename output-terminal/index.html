@@ -19,9 +19,6 @@
     crossorigin="anonymous"
   ></script>
 
-  
-
-  <!--setting height is important-->
   <style>
       body{
         flex: 1;
@@ -40,6 +37,24 @@
       }
       .ace_mobile-menu{
         display:none;
+      }
+      .blink {
+        animation: blink-animation 1s steps(5, start) infinite;
+        -webkit-animation: blink-animation 1s steps(5, start) infinite;
+        opacity: 1;
+      }
+      @keyframes blink-animation {
+        to {
+          visibility: hidden;
+        }
+      }
+      @-webkit-keyframes blink-animation {
+        to {
+          visibility: hidden;
+        }
+      }
+      .ace_hidden-cursors, .ace_cursor {
+        opacity: 1 !important;
       }
   </style>
 </head>
@@ -151,11 +166,13 @@ function runit(code) {
     __future__: Sk.python3,
     execLimit: Number.POSITIVE_INFINITY,
   });
+  $('.ace_cursor-layer').addClass('blink');
   var myPromise = Sk.misceval.asyncToPromise(function () {
     return Sk.importMainWithBody("<stdin>", false, prog, true);
   });
   myPromise.then(
     function (mod) {
+      $('.ace_cursor-layer').removeClass('blink');
       console.log("success");
     },
     function (err) {
